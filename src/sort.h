@@ -21,3 +21,4 @@
 #include <vector.h>
 
 void selection_sort(vec_t v);
+void insertion_sort(vec_t v);

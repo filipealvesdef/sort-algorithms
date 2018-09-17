@@ -39,3 +39,16 @@ void selection_sort(vec_t v)
             swap(v, i, min);
     }
 }
+
+void insertion_sort(vec_t v)
+{
+    for (int i = 1; i < v->length; i++) {
+        int j = i - 1;
+        int val = v->vals[i];
+        while (j >= 0 && v->vals[j] > val) {
+            v->vals[j + 1] = v->vals[j];
+            j--;
+        }
+        v->vals[j + 1] = val;
+    }
+}
