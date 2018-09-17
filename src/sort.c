@@ -53,9 +53,8 @@ void insertion_sort(vec_t v)
     }
 }
 
-void merge(vec_t v, int p, int q, int r)
+void merge(vec_t v, vec_t b, int p, int q, int r)
 {
-    vec_t b = create_vec(v->length, 1);
     int i, j;
     for (i = p; i <= q; i++) {
         b->vals[i] = v->vals[i];
@@ -73,7 +72,6 @@ void merge(vec_t v, int p, int q, int r)
             j--;
         }
     }
-    destroy_vec(b);
 }
 
 void _merge_sort(vec_t v, vec_t aux, int p, int r)
