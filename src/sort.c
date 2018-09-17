@@ -90,3 +90,34 @@ void merge_sort(vec_t v)
     _merge_sort(v, aux, 0, v->length - 1);
     destroy_vec(aux);
 }
+
+void max_heapfy(vec_t v, int length, int i)
+{
+    int l = i * 2 + 1;
+    int r = i * 2 + 2;
+    int max = i;
+    if (l < length && v->vals[l] > v->vals[max])
+        max = l;
+    if (r < length && v->vals[r] > v->vals[max])
+        max = r;
+    if (max > i) {
+        swap(v, i, max);
+        max_heapfy(v, length, max);
+    }
+}
+
+void build_max_heap(vec_t v)
+{
+    int length = v->length;
+    for (int i = length / 2; i >= 0; i--)
+        max_heapfy(v, length, i);
+}
+
+void heap_sort(vec_t v)
+{
+    build_max_heap(v);
+    for (int i = v->length - 1, m = v->length - 1; i > 0; i--, m--) {
+        swap(v, 0, i);
+        max_heapfy(v, m, 0);
+    }
+}
