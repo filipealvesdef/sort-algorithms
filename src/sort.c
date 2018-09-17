@@ -52,3 +52,43 @@ void insertion_sort(vec_t v)
         v->vals[j + 1] = val;
     }
 }
+
+void merge(vec_t v, int p, int q, int r)
+{
+    vec_t b = create_vec(v->length, 1);
+    int i, j;
+    for (i = p; i <= q; i++) {
+        b->vals[i] = v->vals[i];
+    }
+    for (j = q + 1; j <= r; j++)
+        b->vals[r + q + 1 - j] = v->vals[j];
+    i = p;
+    j = r;
+    for (int k = p; k <= r; k++) {
+        if (b->vals[i] <= b->vals[j]) {
+            v->vals[k] = b->vals[i];
+            i++;
+        } else {
+            v->vals[k] = b->vals[j];
+            j--;
+        }
+    }
+    destroy_vec(b);
+}
+
+void _merge_sort(vec_t v, vec_t aux, int p, int r)
+{
+    if (p < r) {
+        int q = (p + r) / 2;
+        _merge_sort(v, aux, p, q);
+        _merge_sort(v, aux, q + 1, r);
+        merge(v, aux, p, q, r);
+    }
+}
+
+void merge_sort(vec_t v)
+{
+    vec_t aux = create_vec(v->length, 1);
+    _merge_sort(v, aux, 0, v->length - 1);
+    destroy_vec(aux);
+}
