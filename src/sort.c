@@ -121,3 +121,31 @@ void heap_sort(vec_t v)
         max_heapfy(v, m, 0);
     }
 }
+
+static int partition(vec_t v, int p, int r)
+{
+    int x = v->vals[r];
+    int i = p - 1;
+    for (int j = p; j < r; j++) {
+        if (v->vals[j] <= x) {
+            i++;
+            swap(v, i, j);
+        }
+    }
+    swap(v, i + 1, r);
+    return i + 1;
+}
+
+void _quicksort(vec_t v, int p, int r)
+{
+    if (p < r) {
+        int q = partition(v, p, r);
+        _quicksort(v, p, q - 1);
+        _quicksort(v, q + 1, r);
+    }
+}
+
+void quicksort(vec_t v)
+{
+    _quicksort(v, 0, v->length - 1);
+}
