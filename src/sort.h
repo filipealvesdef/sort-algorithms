@@ -24,3 +24,4 @@ void selection_sort(vec_t v);
 void insertion_sort(vec_t v);
 void merge_sort(vec_t v);
 void heap_sort(vec_t v);
+void quicksort(vec_t v);
