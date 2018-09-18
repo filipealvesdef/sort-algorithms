@@ -7,6 +7,7 @@ TESTS_BIN	= $(BIN_DIR)/vector_test \
 			  $(BIN_DIR)/insertion_sort_test \
 			  $(BIN_DIR)/merge_sort_test \
 			  $(BIN_DIR)/heap_sort_test \
+			  $(BIN_DIR)/quicksort_test \
 
 CC 			= gcc
 CFLAGS 		= -I$(SRC_DIR)
