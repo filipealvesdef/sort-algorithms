@@ -12,7 +12,12 @@ TESTS_BIN	= $(BIN_DIR)/vector_test \
 CC 			= gcc
 CFLAGS 		= -I$(SRC_DIR)
 
+benchmark: mkdirs $(BIN_DIR)/benchmark
+
 tests: mkdirs $(TESTS_BIN)
+
+$(BIN_DIR)/benchmark: $(SRC_DIR)/app.c $(BLD_DIR)/vector.o $(BLD_DIR)/sort.o
+	$(CC) $(CFLAGS) -o $@ $^
 
 $(BIN_DIR)/%_test: $(TESTS_DIR)/%.c $(BLD_DIR)/vector.o $(BLD_DIR)/sort.o
 	$(CC) $(CFLAGS) -o $@ $^
